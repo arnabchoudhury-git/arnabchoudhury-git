@@ -5,6 +5,7 @@ from college.admin import admin
 from college.faculty import faculty
 
 
+
 app.register_blueprint(basic)
 app.register_blueprint(student)
 app.register_blueprint(admin)
