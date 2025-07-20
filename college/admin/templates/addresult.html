@@ -1,0 +1,206 @@
+{% from "macro/cmsnav.html" import cmsnav%}
+{%extends "admbase.html"%}
+{%block head%}
+<title>College Management System</title>
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+{%endblock%}
+{%block content%}
+
+<div class="container" w-tid="21">
+    <!-- Sidebar -->
+    {{cmsnav()}}
+    <main class="main-content" w-tid="111">
+        <header class="top-header" w-tid="113">
+                <h2>College Management System</h2>
+                <!-- <div class="search-box" w-tid="115">
+                    <input type="text" placeholder="Search..." w-tid="117"/>
+                    <button w-tid="119"><i class="fas fa-search" w-tid="121"></i></button>
+                </div> -->
+                <div class="user-profile" w-tid="123">
+                    <span class="notification" w-tid="125"><a href="/admin/notice"><i class="fas fa-bell" w-tid="127"></i></a></span>
+                    <!-- <span class="message" w-tid="129"><i class="fas fa-envelope" w-tid="131"></i></span> -->
+                    <div class="profile-img" w-tid="133">
+                        <i class="fas fa-user-circle" w-tid="135"></i>
+                    </div>
+                    <span class="username" w-tid="137"><a href="{{url_for('logout')}}">Logout Admin</a></span>
+                </div>
+            </header>
+        <!-- Dashboard Section -->
+        <div id="dashboard-page" class="content-section" w-tid="139">
+            <div class="dashboard" w-tid="141">
+                <h1 w-tid="143">Student Profile</h1>
+                <div class="students-header" w-tid="359">
+                    <p w-tid="361">Details of students </p>
+                    <a style="text-decoration: none; color:white" href="/admin/student">
+                        <button id="cancel-add-student" class="back-button" w-tid="1515">
+
+                            <i class="fas fa-arrow-left" w-tid="1517"></i> Back to Students
+
+                        </button>
+                    </a>
+                </div>
+                <div class="stats-cards" w-tid="145">
+
+                    <div class="stat-card" w-tid="147">
+                        <div class="stat-icon" w-tid="149"><i class="fas fa-user-graduate" w-tid="151"></i></div>
+                        <div class="stat-details" w-tid="153">
+                            <h3 w-tid="155">Name</h3>
+                            <p w-tid="157">{{student.name |title}}</p>
+                        </div>
+                    </div>
+                    <div class="stat-card" w-tid="159">
+                        <div class="stat-icon" w-tid="161"><i class="fas fa-chalkboard-teacher" w-tid="163"></i></div>
+                        <div class="stat-details" w-tid="165">
+                            <h3 w-tid="167">Roll</h3>
+                            <p w-tid="169">{{student.roll}}</p>
+                        </div>
+                    </div>
+                    <div class="stat-card" w-tid="171">
+                        <div class="stat-icon" w-tid="173"><i class="fas fa-book" w-tid="175"></i></div>
+                        <div class="stat-details" w-tid="177">
+                            <h3 w-tid="179">Department</h3>
+                            <p w-tid="181">{{student.department }}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="stat-card" w-tid="183">
+                            <div class="stat-icon" w-tid="185"><i class="fas fa-dollar-sign" w-tid="187"></i></div>
+                            <div class="stat-details" w-tid="189">
+                                <h3 w-tid="191">$750,000</h3>
+                                <p w-tid="193">Revenue</p>
+                            </div>
+                        </div> -->
+                </div>
+
+                <!-- result table -->
+                <h1 w-tid="143">Result Table</h1>
+                <div class="students-header" w-tid="359">
+                    <p w-tid="361">Result table for all semester</p>
+
+                </div>
+                <div class="students-table" w-tid="415">
+                    <table w-tid="417">
+                        <thead w-tid="419">
+                            <tr w-tid="421">
+                                <th w-tid="423">Semester</th>
+                                <th w-tid="425">Mark obtained</th>
+
+                                <th w-tid="427">Out off</th>
+                                <th w-tid="425">Attendance</th>
+                                <th w-tid="429">Remark</th>
+                                <!-- <th w-tid="431">Email</th> -->
+                                <th w-tid="433">Status</th>
+                                <!-- <th w-tid="435">Status</th> -->
+                                <!-- <th w-tid="437">Actions</th> -->
+                            </tr>
+                        </thead>
+                        <tbody w-tid="439">
+
+
+
+                            <!-- {%for result in result%} -->
+
+
+                            <tr w-tid="441">
+                                <td w-tid="443">{{result.semester_.name}}</td>
+                                <td w-tid="445">{{result.mark}}</td>
+                                <td w-tid="447">{{result.outoff}}</td>
+                                <td w-tid="449">{{result.attendance}}%</td>
+                                <td w-tid="451">{{result.remark}}</td>
+                                {%if result.status%}
+                                <td w-tid="453">Pass</td>
+                                {% else %}
+                                <td w-tid="453">Fail</td>
+                                {% endif %}
+                                <!-- <td class="action-cell" w-tid="459">
+
+                                    <button class="action-btn edit-btn" w-tid="465">
+                                        <a href="/admin/update/student/{{student.id}}">
+                                            <i class="fas fa-edit" w-tid="467"></i>
+                                        </a>
+                                    </button>
+                                    <button class="action-btn edit-btn" w-tid="469">
+                                        <a href="/admin/addresult/{{student.id}}"><i class="fas fa-clipboard"
+                                                w-tid="723"></i></a>
+                                    </button>
+                                    <button class="action-btn delete-btn" w-tid="469">
+                                        <a href="/admin/student/delete/{{student.id}}"><i class="fas fa-trash"
+                                                w-tid="723"></i></a>
+                                    </button>
+
+                                </td> -->
+                            </tr>
+
+
+                            <!-- {%endfor%} -->
+
+                        </tbody>
+                    </table>
+                    {%if not result.id%}
+                    <br>
+                    <p style="text-align: center;">No More results...</p> <br><br>
+                    {% endif %}
+                </div>
+                <br>
+                <!-- No results available message -->
+
+
+
+
+
+                <h1 w-tid="357">{{student.semester_.name}} result</h1>
+
+
+                <div class="student-form-container" w-tid="1519">
+                    <form id="add-result-form" method="POST" action="/admin/addresult/{{ student.id }}"
+                        class="student-form" w-tid="1521">
+                        <div class="form-row" w-tid="1537">
+                            <div class="form-group" w-tid="1539">
+                                <label for="new-email" w-tid="1541">Mark Obtained*</label>
+                                <input type="number" id="new-email" name="mark" required="" w-tid="1543" value="">
+                            </div>
+                            <div class="form-group" w-tid="1545">
+                                <label for="new-phone" w-tid="1547">Out off*</label>
+                                <input type="number" id="new-phone" minlength="10" maxlength="15" name="outoff"
+                                    required="" w-tid="1549" value="">
+                            </div>
+                        </div>
+                        <div class="form-row" w-tid="1537">
+                            <div class="form-group" w-tid="1539">
+                                <label for="new-email" w-tid="1541">Attendance in %*</label>
+                                <input type="number" id="new-email" name="attendance" required="" w-tid="1543" value="">
+                            </div>
+                            <div class="form-group" w-tid="1545">
+                                <label for="remark" w-tid="1547">Remark</label>
+                                <input type="text" id="remark"  maxlength="100" name="remark"
+                                    required="" w-tid="1549" value="">
+                            </div>
+
+                        </div>
+                        <div class="form-actions" w-tid="1599">
+                            <a href="/admin/student"><button type="button" id="cancel-add-student" class="cancel-btn"
+                                    w-tid="1601">Cancel</button></a>
+
+                            {%if data%}
+                            <button type="submit" class="save-btn" w-tid="1603">Update Student</button>
+                            {%else%}
+                            <button type="submit" class="save-btn" w-tid="1603">Add Result</button>
+                            {%endif%}
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <!-- result table -->
+
+
+
+
+            </div>
+        </div>
+    </main>
+</div>
+
+{%endblock%}
